@@ -1,6 +1,5 @@
 package com.delta.onsites.Calculator;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.delta.onsites.R;
+import com.delta.onsites.SharedViewModel;
 
 public class InputFragment extends Fragment {
 
@@ -25,15 +26,17 @@ public class InputFragment extends Fragment {
 
     private static final String TAG = "InputFragment";
 
-    boolean opr_present = false;
+    private boolean opr_present = false;
 
-    double num1, num2;
+    private double num1, num2;
 
-    int index;
+    private int index;
 
-    char operation;
+    private char operation;
 
     Listner listner;
+
+    private SharedViewModel viewModel;
 
     public InputFragment() {
         // Required empty public constructor
@@ -51,11 +54,16 @@ public class InputFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_input, container, false);
+
+
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         TextView input = view.findViewById(R.id.input);
 
@@ -243,7 +251,9 @@ public class InputFragment extends Fragment {
 
                         index = input.getText().toString().length();
 
-                        listner.sendAns(num1);
+                        //listner.sendAns(num1);
+
+                        viewModel.setAnswer(num1);
 
                     } catch (Exception e) {
                         Toast.makeText(requireContext(), "Enter valid Number", Toast.LENGTH_SHORT).show();
@@ -305,7 +315,9 @@ public class InputFragment extends Fragment {
 
                         index = input.getText().toString().length();
 
-                        listner.sendAns(num1);
+                        //listner.sendAns(num1);
+
+                        viewModel.setAnswer(num1);
 
                     } catch (Exception e) {
                         Toast.makeText(requireContext(), "Enter valid Number", Toast.LENGTH_SHORT).show();
@@ -367,7 +379,9 @@ public class InputFragment extends Fragment {
 
                         index = input.getText().toString().length();
 
-                        listner.sendAns(num1);
+                        //listner.sendAns(num1);
+
+                        viewModel.setAnswer(num1);
 
                     } catch (Exception e) {
                         Toast.makeText(requireContext(), "Enter valid Number", Toast.LENGTH_SHORT).show();
@@ -429,7 +443,9 @@ public class InputFragment extends Fragment {
 
                         index = input.getText().toString().length();
 
-                        listner.sendAns(num1);
+                        //listner.sendAns(num1);
+
+                        viewModel.setAnswer(num1);
 
                     } catch (Exception e) {
                         Toast.makeText(requireContext(), "Enter valid Number", Toast.LENGTH_SHORT).show();
@@ -456,7 +472,9 @@ public class InputFragment extends Fragment {
 
                         opr_present = false;
 
-                        listner.sendAns(num1);
+                        //listner.sendAns(num1);
+
+                        viewModel.setAnswer(num1);
 
                     } catch (Exception e) {
                         Toast.makeText(requireContext(), "Enter valid Number", Toast.LENGTH_SHORT).show();
@@ -495,7 +513,9 @@ public class InputFragment extends Fragment {
 
                         index = 0;
 
-                        listner.sendAns(num1);
+                        //listner.sendAns(num1);
+
+                        viewModel.setAnswer(num1);
 
                     } catch (Exception e) {
                         Toast.makeText(requireContext(), "Enter valid Number", Toast.LENGTH_SHORT).show();
@@ -504,8 +524,9 @@ public class InputFragment extends Fragment {
             }
         });
     }
+}
 
-
+/*
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -522,4 +543,4 @@ public class InputFragment extends Fragment {
         super.onDetach();
         listner = null;
     }
-}
+ */

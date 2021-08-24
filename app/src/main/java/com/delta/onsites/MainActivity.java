@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import com.delta.onsites.Calculator.InputFragment;
 import com.delta.onsites.Calculator.OutputFragment;
 
-public class MainActivity extends AppCompatActivity implements InputFragment.Listner {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
@@ -35,10 +35,5 @@ public class MainActivity extends AppCompatActivity implements InputFragment.Lis
         manager.beginTransaction()
                 .replace(R.id.output, outputFragment, outputFragment.getTag())
                 .commit();
-    }
-
-    @Override
-    public void sendAns(double ans) {
-        outputFragment.updateAns(ans);
     }
 }
